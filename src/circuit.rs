@@ -741,6 +741,7 @@ impl<R: RealScalar> QuditCircuit<R> {
     }
 
 
+    /// Convert the circuit to an expression tree.
     pub fn to_tree(&self) -> ExpressionTree {
         let mut point_to_index_map = HashMap::new();
         let mut op_index_count = 0;
@@ -976,9 +977,9 @@ mod tests {
         let cnotutry: UnitaryMatrix<c64> = Gate::CP().gen_expr().get_unitary(&[]);
         let u3utry2 = u3utry.kron(&u3utry);
         let block = u3utry2.dot(&cnotutry);
-        let blockI = block.kron(&UnitaryMatrix::identity([2]));
-        let Iblock = UnitaryMatrix::identity([2]).kron(&block);
-        let expected = Iblock.dot(&blockI);
+        let block_i = block.kron(&UnitaryMatrix::identity([2]));
+        let i_block = UnitaryMatrix::identity([2]).kron(&block);
+        let expected = i_block.dot(&block_i);
         let dist = UnitaryMatrix::new([2], utry.to_owned()).get_distance_from(expected);
         println!("{:?}", dist);
         assert!(dist < 1e-7);

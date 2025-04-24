@@ -62,10 +62,12 @@ impl CycleList {
         self.logical_to_phsyical[idx]
     }
 
+    #[allow(dead_code)]
     pub(super) fn get(&self, physical_index: usize) -> &QuditCycle {
         &self.cycles[physical_index]
     }
 
+    #[allow(dead_code)]
     pub(super) fn get_mut(
         &mut self,
         physical_index: usize,

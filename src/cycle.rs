@@ -1,10 +1,5 @@
 use std::collections::BTreeMap;
-use std::collections::HashSet;
 use std::fmt;
-use std::ops::Index;
-use std::ops::IndexMut;
-use anyhow::Error;
-use anyhow::Result;
 
 use crate::location::CircuitLocation;
 use crate::instruction::InstructionReference;
@@ -57,6 +52,7 @@ impl QuditCycle {
         }
     }
 
+    #[allow(dead_code)]
     pub fn get(&self, dit_or_bit: DitOrBit) -> Option<&InstructionReference> {
         let physical_index = self.get_physical_index(dit_or_bit);
 
@@ -66,6 +62,7 @@ impl QuditCycle {
         }
     }
 
+    #[allow(dead_code)]
     pub fn get_mut(&mut self, dit_or_bit: DitOrBit) -> Option<&InstructionReference> {
         let physical_index = self.get_physical_index(dit_or_bit);
 
@@ -294,6 +291,7 @@ impl QuditCycle {
         self.num_ops() == 0
     }
 
+    #[allow(dead_code)]
     pub(super) fn iter(&self) -> CycleIter { CycleIter::new(self) }
 }
 

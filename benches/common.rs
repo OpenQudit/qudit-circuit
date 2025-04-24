@@ -17,6 +17,7 @@ use qudit_core::QuditRadices;
 /// This qft implementation does not consider numerical issues and does not
 /// perform the final swap back step in the algorithm. It should only be
 /// used for benchmarking purposes.
+#[allow(dead_code)]
 pub fn build_qft_circuit(n: usize) -> QuditCircuit {
     // TODO: Double check this is actually a QFT
     let mut circ = QuditCircuit::new(radices![2; n], 0);
@@ -30,6 +31,7 @@ pub fn build_qft_circuit(n: usize) -> QuditCircuit {
     circ
 }
 
+#[allow(dead_code)]
 pub fn build_qsearch_thin_step_circuit(n: usize) -> QuditCircuit {
     let mut circ = QuditCircuit::new(radices![2; n], 0);
     for i in 0..n {
@@ -45,6 +47,7 @@ pub fn build_qsearch_thin_step_circuit(n: usize) -> QuditCircuit {
     circ
 }
 
+#[allow(dead_code)]
 pub fn build_qsearch_thick_step_circuit(n: usize) -> QuditCircuit {
     let mut circ = QuditCircuit::new(radices![2; n], 0);
     for i in 0..n {
@@ -52,7 +55,7 @@ pub fn build_qsearch_thick_step_circuit(n: usize) -> QuditCircuit {
     }
     for _ in 0..n {
         for i in 0..(n - 1) {
-            for j in 0..3 {
+            for _j in 0..3 {
                 circ.append_gate(Gate::CX(), loc![i, i + 1], vec![]);
                 circ.append_gate(Gate::U3(), loc![i], vec![]);
                 circ.append_gate(Gate::U3(), loc![i + 1], vec![]);

@@ -508,14 +508,17 @@ impl CircuitLocation {
         self.clbits.len()
     }
 
+    /// Returns the index of the qudit in the location.
     pub fn get_qudit_index(&self, index: usize) -> Option<usize> {
         self.qudits.iter().position(|x| x == index)
     }
 
+    /// Returns the index of the clbit in the location.
     pub fn get_clbit_index(&self, index: usize) -> Option<usize> {
         self.clbits.iter().position(|x| x == index)
     }
 
+    /// Returns a new CircuitLocation object with the same qudits and clbits.
     pub fn to_owned(&mut self) -> CircuitLocation {
         let qudits = self.qudits.to_owned();
         let clbits = self.clbits.to_owned();
